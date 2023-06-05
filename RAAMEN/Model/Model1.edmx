@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="raamenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Detail">
+          <Key>
+            <PropertyRef Name="HeaderId" />
+            <PropertyRef Name="RamenId" />
+          </Key>
+          <Property Name="HeaderId" Type="int" Nullable="false" />
+          <Property Name="RamenId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Header">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="Staffid" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Meat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ramen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MeatId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Broth" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Detail__HeaderId__45F365D3">
+          <End Role="Header" Type="Self.Header" Multiplicity="1" />
+          <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Header">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Detail">
+              <PropertyRef Name="HeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detail__RamenId__46E78A0C">
+          <End Role="Ramen" Type="Self.Ramen" Multiplicity="1" />
+          <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ramen">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Detail">
+              <PropertyRef Name="RamenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Header__Customer__4316F928">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Header" Type="Self.Header" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Header">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ramen__MeatId__403A8C7D">
+          <End Role="Meat" Type="Self.Meat" Multiplicity="1" />
+          <End Role="Ramen" Type="Self.Ramen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ramen">
+              <PropertyRef Name="MeatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__RoleId__3B75D760">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="raamenModelStoreContainer">
+          <EntitySet Name="Detail" EntityType="Self.Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Header" EntityType="Self.Header" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Meat" EntityType="Self.Meat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ramen" EntityType="Self.Ramen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Detail__HeaderId__45F365D3" Association="Self.FK__Detail__HeaderId__45F365D3">
+            <End Role="Header" EntitySet="Header" />
+            <End Role="Detail" EntitySet="Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detail__RamenId__46E78A0C" Association="Self.FK__Detail__RamenId__46E78A0C">
+            <End Role="Ramen" EntitySet="Ramen" />
+            <End Role="Detail" EntitySet="Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Header__Customer__4316F928" Association="Self.FK__Header__Customer__4316F928">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Header" EntitySet="Header" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ramen__MeatId__403A8C7D" Association="Self.FK__Ramen__MeatId__403A8C7D">
+            <End Role="Meat" EntitySet="Meat" />
+            <End Role="Ramen" EntitySet="Ramen" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__RoleId__3B75D760" Association="Self.FK__Users__RoleId__3B75D760">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="raamenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Detail">
+          <Key>
+            <PropertyRef Name="HeaderId" />
+            <PropertyRef Name="RamenId" />
+          </Key>
+          <Property Name="HeaderId" Type="Int32" Nullable="false" />
+          <Property Name="RamenId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Header" Relationship="Self.FK__Detail__HeaderId__45F365D3" FromRole="Detail" ToRole="Header" />
+          <NavigationProperty Name="Raman" Relationship="Self.FK__Detail__RamenId__46E78A0C" FromRole="Detail" ToRole="Ramen" />
+        </EntityType>
+        <EntityType Name="Header">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="Staffid" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Details" Relationship="Self.FK__Detail__HeaderId__45F365D3" FromRole="Header" ToRole="Detail" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Header__Customer__4316F928" FromRole="Header" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Meat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Ramen" Relationship="Self.FK__Ramen__MeatId__403A8C7D" FromRole="Meat" ToRole="Ramen" />
+        </EntityType>
+        <EntityType Name="Raman">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MeatId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Broth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Details" Relationship="Self.FK__Detail__RamenId__46E78A0C" FromRole="Ramen" ToRole="Detail" />
+          <NavigationProperty Name="Meat" Relationship="Self.FK__Ramen__MeatId__403A8C7D" FromRole="Ramen" ToRole="Meat" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__RoleId__3B75D760" FromRole="Role" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Headers" Relationship="Self.FK__Header__Customer__4316F928" FromRole="Users" ToRole="Header" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__Users__RoleId__3B75D760" FromRole="Users" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK__Detail__HeaderId__45F365D3">
+          <End Role="Header" Type="Self.Header" Multiplicity="1" />
+          <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Header">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Detail">
+              <PropertyRef Name="HeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detail__RamenId__46E78A0C">
+          <End Role="Ramen" Type="Self.Raman" Multiplicity="1" />
+          <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ramen">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Detail">
+              <PropertyRef Name="RamenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Header__Customer__4316F928">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Header" Type="Self.Header" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Header">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ramen__MeatId__403A8C7D">
+          <End Role="Meat" Type="Self.Meat" Multiplicity="1" />
+          <End Role="Ramen" Type="Self.Raman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ramen">
+              <PropertyRef Name="MeatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__RoleId__3B75D760">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="raamenEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Details" EntityType="Self.Detail" />
+          <EntitySet Name="Headers" EntityType="Self.Header" />
+          <EntitySet Name="Meats" EntityType="Self.Meat" />
+          <EntitySet Name="Ramen" EntityType="Self.Raman" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Detail__HeaderId__45F365D3" Association="Self.FK__Detail__HeaderId__45F365D3">
+            <End Role="Header" EntitySet="Headers" />
+            <End Role="Detail" EntitySet="Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detail__RamenId__46E78A0C" Association="Self.FK__Detail__RamenId__46E78A0C">
+            <End Role="Ramen" EntitySet="Ramen" />
+            <End Role="Detail" EntitySet="Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Header__Customer__4316F928" Association="Self.FK__Header__Customer__4316F928">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Header" EntitySet="Headers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ramen__MeatId__403A8C7D" Association="Self.FK__Ramen__MeatId__403A8C7D">
+            <End Role="Meat" EntitySet="Meats" />
+            <End Role="Ramen" EntitySet="Ramen" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__RoleId__3B75D760" Association="Self.FK__Users__RoleId__3B75D760">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="raamenModelStoreContainer" CdmEntityContainer="raamenEntities">
+          <EntitySetMapping Name="Details">
+            <EntityTypeMapping TypeName="raamenModel.Detail">
+              <MappingFragment StoreEntitySet="Detail">
+                <ScalarProperty Name="HeaderId" ColumnName="HeaderId" />
+                <ScalarProperty Name="RamenId" ColumnName="RamenId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Headers">
+            <EntityTypeMapping TypeName="raamenModel.Header">
+              <MappingFragment StoreEntitySet="Header">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Staffid" ColumnName="Staffid" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Meats">
+            <EntityTypeMapping TypeName="raamenModel.Meat">
+              <MappingFragment StoreEntitySet="Meat">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ramen">
+            <EntityTypeMapping TypeName="raamenModel.Raman">
+              <MappingFragment StoreEntitySet="Ramen">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MeatId" ColumnName="MeatId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Broth" ColumnName="Broth" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="raamenModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="raamenModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

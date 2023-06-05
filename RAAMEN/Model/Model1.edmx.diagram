@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3d92ec3f7c2b49b2b62514504016a8b0" Name="Diagram1">
+        <EntityTypeShape EntityType="raamenModel.Detail" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="raamenModel.Header" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="raamenModel.Meat" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="raamenModel.Raman" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="raamenModel.Role" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="raamenModel.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="raamenModel.FK__Detail__HeaderId__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="raamenModel.FK__Detail__RamenId__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="raamenModel.FK__Header__Customer__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="raamenModel.FK__Ramen__MeatId__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="raamenModel.FK__Users__RoleId__3B75D760" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
