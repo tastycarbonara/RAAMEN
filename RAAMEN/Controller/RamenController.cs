@@ -11,7 +11,7 @@ namespace RAAMEN.Controller
     {
         public static string insertRamen(int MeatId, string name, string broth, string price)
         {
-            if (!name.Contains("Ramen") || MeatId==0 || broth.Equals("") || price.Equals(""))
+            if (!name.Contains("Ramen") || MeatId==0 || broth.Equals("") || int.Parse(price)<3000)
             {
                 return "Please fill the boxes correctly";
             }
