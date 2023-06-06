@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace RAAMEN.View.Master_Site
 {
-    public partial class Admin : System.Web.UI.MasterPage
+    public partial class Staff : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,6 +17,10 @@ namespace RAAMEN.View.Master_Site
                 logout.Visible = false;
                 Response.Redirect("Login.aspx");
             }
+        }
+        protected void home_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Home.aspx");
         }
 
         protected void logout_Click(object sender, EventArgs e)
@@ -38,7 +42,5 @@ namespace RAAMEN.View.Master_Site
         {
             Response.Redirect("ManageRamen.aspx");
         }
-
-        
     }
 }

@@ -11,17 +11,8 @@ namespace RAAMEN.View
 {
 
 
-    public partial class Login
+    public partial class InsertRamen
     {
-
-        /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
         /// Label1 control.
@@ -33,13 +24,13 @@ namespace RAAMEN.View
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// usernm control.
+        /// name_inp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox usernm;
+        protected global::System.Web.UI.WebControls.TextBox name_inp;
 
         /// <summary>
         /// Label2 control.
@@ -51,39 +42,66 @@ namespace RAAMEN.View
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// passw control.
+        /// meat_inp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox passw;
+        protected global::System.Web.UI.WebControls.DropDownList meat_inp;
 
         /// <summary>
-        /// login control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button login;
+        protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// status control.
+        /// broth_inp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label status;
+        protected global::System.Web.UI.WebControls.TextBox broth_inp;
 
         /// <summary>
-        /// HyperLink1 control.
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.WebControls.Label Label4;
+
+        /// <summary>
+        /// price_inp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox price_inp;
+
+        /// <summary>
+        /// insertramen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button insertramen;
+
+        /// <summary>
+        /// return control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button @return;
     }
 }

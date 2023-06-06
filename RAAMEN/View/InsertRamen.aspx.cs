@@ -1,4 +1,4 @@
-﻿using RAAMEN.Repository;
+﻿using RAAMEN.Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace RAAMEN.View
 {
-
-    public partial class ManageRamen : System.Web.UI.Page
+    public partial class InsertRamen : System.Web.UI.Page
     {
         protected override void OnPreInit(EventArgs e)
         {
@@ -33,31 +32,18 @@ namespace RAAMEN.View
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            gridramen.DataSource = RamenRepository.getAllRamen();
-            gridramen.DataBind();
+
         }
 
-        protected void gridramen_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void insertramen_Click(object sender, EventArgs e)
         {
-            GridViewRow row = gridramen.Rows[e.RowIndex];
-
-            int id = int.Parse(row.Cells[1].Text.ToString());
-
-            RamenRepository.deleteRamen(id);
-            Response.Redirect("~/View/ManageRamen.aspx");
+            RamenController.insertRamen(int.Parse(meat_inp.SelectedValue), name_inp.Text, broth_inp.Text,
+                price_inp.Text);
         }
 
-        protected void gridramen_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void return_Click(object sender, EventArgs e)
         {
-            GridViewRow row = gridramen.Rows[e.NewEditIndex];
-            int id = int.Parse(row.Cells[1].Text);
-            Response.Redirect("~/View/UpdateRamen.aspx?id=" + id);
+            Response.Redirect("ManageRamen.aspx");
         }
-
-        protected void newramen_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("InsertRamen.aspx");
-        }
-
     }
 }

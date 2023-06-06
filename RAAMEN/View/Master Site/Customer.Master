@@ -1,0 +1,26 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Customer.master.cs" Inherits="RAAMEN.View.Master_Site.Customer" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+     <div style="border: 1px solid black">
+        <h1 style="padding-left: 10px;">RAAMEN</h1>
+            <div style="padding-bottom: 10px; padding-left: 10px;">
+                <asp:Button ID="logout" runat="server" Text="Logout" onclick="logout_Click" />
+                <asp:Button ID="profile" runat="server" Text="Profile" onclick="profile_Click" style="margin-left: 10px;"/>
+             </div>
+    </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

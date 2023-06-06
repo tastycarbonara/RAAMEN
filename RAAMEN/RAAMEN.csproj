@@ -90,15 +90,20 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="View\Home.aspx" />
+    <Content Include="View\InsertRamen.aspx" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\ManageRamen.aspx" />
     <Content Include="View\Profile.aspx" />
     <Content Include="View\Register.aspx" />
+    <Content Include="View\UpdateRamen.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\RamenController.cs" />
     <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Factory\RamenFactory.cs" />
     <Compile Include="Factory\UserFactory.cs" />
+    <Compile Include="Handler\RamenHandler.cs" />
     <Compile Include="Handler\UserHandler.cs" />
     <Compile Include="Model\Detail.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -134,6 +139,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\RamenRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="View\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -141,6 +147,13 @@
     </Compile>
     <Compile Include="View\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\InsertRamen.aspx.cs">
+      <DependentUpon>InsertRamen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\InsertRamen.aspx.designer.cs">
+      <DependentUpon>InsertRamen.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -163,6 +176,20 @@
     <Compile Include="View\Master Site\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
+    <Compile Include="View\Master Site\Customer.Master.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Master Site\Customer.Master.designer.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
+    </Compile>
+    <Compile Include="View\Master Site\Staff.Master.cs">
+      <DependentUpon>Staff.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Master Site\Staff.Master.designer.cs">
+      <DependentUpon>Staff.Master</DependentUpon>
+    </Compile>
     <Compile Include="View\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -177,6 +204,13 @@
     <Compile Include="View\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\UpdateRamen.aspx.cs">
+      <DependentUpon>UpdateRamen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\UpdateRamen.aspx.designer.cs">
+      <DependentUpon>UpdateRamen.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Model\Model1.edmx">
@@ -188,6 +222,8 @@
     </Content>
     <None Include="packages.config" />
     <Content Include="View\Master Site\Admin.Master" />
+    <Content Include="View\Master Site\Staff.Master" />
+    <Content Include="View\Master Site\Customer.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
