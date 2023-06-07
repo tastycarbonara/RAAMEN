@@ -20,9 +20,6 @@ namespace RAAMEN.View
             }
             else if(cookie!=null)
             {
-                if (cookie["role"].Equals("1"))
-                {
-                }
                 welcome.Text = "Welcome, " + cookie["user"];
                 if (cookie["role"].Equals("1"))
                 {
@@ -32,14 +29,10 @@ namespace RAAMEN.View
                 {
                     role.Text = "Your role is Staff";
                 }
-            }
-            else if (cookie["role"].Equals("3"))
-            {
-
-                cookie.Expires = DateTime.Now.AddDays(-1);
-
-                Response.Cookies.Add(cookie);
-                Response.Redirect("Login.aspx");
+                else if (cookie["role"].Equals("3"))
+                {
+                    Response.Redirect("OrderRamen.aspx");
+                }
             }
 
 

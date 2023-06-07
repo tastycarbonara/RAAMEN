@@ -17,6 +17,8 @@
             <asp:Label ID="Label2" runat="server" Text="Password: "></asp:Label>
             <asp:TextBox ID="passw" runat="server"></asp:TextBox><br /><br />
 
+            <asp:CheckBox ID="remember" runat="server" Text="Remember Me" /><br />
+
             <asp:Button ID="login" runat="server" Text="Login" OnClick="login_Click"/><br />
 
             <asp:Label ID="status" runat="server" Text=""></asp:Label><br />

@@ -15,6 +15,8 @@
             <div style="padding-bottom: 10px; padding-left: 10px;">
                 <asp:Button ID="logout" runat="server" Text="Logout" onclick="logout_Click" />
                 <asp:Button ID="profile" runat="server" Text="Profile" onclick="profile_Click" style="margin-left: 10px;"/>
+                <asp:Button ID="order" runat="server" Text="Order Ramen" OnClick="order_Click" style="margin-left: 10px;"/>
+                <asp:Button ID="history" runat="server" Text="Transaction History" OnClick="history_Click" style="margin-left: 10px;"/>
              </div>
     </div>
         <div>

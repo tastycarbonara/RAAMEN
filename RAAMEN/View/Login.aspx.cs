@@ -17,10 +17,12 @@ namespace RAAMEN.View
 
         protected void login_Click(object sender, EventArgs e)
         {
-            raamenEntities db = new raamenEntities();
+            raamenEntities1 db = new raamenEntities1();
 
-            User user = (from u in db.Users where u.Username.Equals(usernm.Text) 
-                         && u.Password.Equals(passw.Text) select u).FirstOrDefault();
+            User user = (from u in db.Users
+                         where u.Username.Equals(usernm.Text)
+      && u.Password.Equals(passw.Text)
+                         select u).FirstOrDefault();
 
             if (user == null)
             {
@@ -36,11 +38,31 @@ namespace RAAMEN.View
 
             Session["user_pass"] = user.Password;
 
-            cookie.Expires = DateTime.Now.AddDays(1);
-
+            if (remember.Checked)
+            {
+                cookie.Expires = DateTime.Now.AddDays(1);
+            }
+            else
+            {
+                Response.Cookies["id"].Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies["user"].Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies["role"].Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies["user_pass"].Expires = DateTime.Now.AddDays(-1);
+            }
             Response.Cookies.Add(cookie);
 
-            Response.Redirect("Home.aspx");
+
+            if (cookie["role"].Equals("1") || cookie["role"].Equals("2"))
+            {
+                Response.Redirect("Home.aspx");
+            }
+            else if (cookie["role"].Equals("3"))
+            {
+                Response.Redirect("OrderRamen.aspx");
+            }
         }
+
     }
+
+       
 }

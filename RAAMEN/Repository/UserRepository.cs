@@ -8,7 +8,7 @@ namespace RAAMEN.Repository
 {
     public class UserRepository
     {
-        static raamenEntities db = new raamenEntities();
+        static raamenEntities1 db = new raamenEntities1();
 
         public static void insert(User user)
         {

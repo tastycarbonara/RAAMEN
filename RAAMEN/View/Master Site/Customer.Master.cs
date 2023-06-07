@@ -28,5 +28,15 @@ namespace RAAMEN.View.Master_Site
         {
             Response.Redirect("Profile.aspx");
         }
+
+        protected void order_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("OrderRamen.aspx");
+        }
+
+        protected void history_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("TransactionHistory.aspx");
+        }
     }
 }

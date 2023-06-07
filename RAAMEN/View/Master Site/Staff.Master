@@ -18,6 +18,8 @@
                     <asp:Button ID="logout" runat="server" Text="Logout" onclick="logout_Click" style="margin-left: 10px;"/>
                     <asp:Button ID="profile" runat="server" Text="Profile" onclick="profile_Click" style="margin-left: 10px;"/>
                     <asp:Button ID="home" runat="server" Text="Home" onclick="home_Click" style="margin-left: 10px;"/>
+                  
+                    <asp:Button ID="queue" runat="server" Text="Order Queue" OnClick="queue_Click" style="margin-left: 10px;"/>
                 </div>
             </div>
         <div>

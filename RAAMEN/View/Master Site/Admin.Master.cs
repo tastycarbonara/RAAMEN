@@ -39,6 +39,14 @@ namespace RAAMEN.View.Master_Site
             Response.Redirect("ManageRamen.aspx");
         }
 
-        
+        protected void queue_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("HandleRamen.aspx");
+        }
+
+        protected void history_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("TransactionHistory.aspx");
+        }
     }
 }

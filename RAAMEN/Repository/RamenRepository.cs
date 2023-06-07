@@ -8,7 +8,7 @@ namespace RAAMEN.Repository
 {
     public class RamenRepository
     {
-        static raamenEntities db = new raamenEntities();
+        static raamenEntities1 db = new raamenEntities1();
         public static void insert(Raman ramen)
         {
             db.Ramen.Add(ramen);
@@ -38,9 +38,42 @@ namespace RAAMEN.Repository
             return db.Ramen.Find(id);
         }
 
+        public static Cart getCartBasedOnID(int id)
+        {
+            return db.Carts.Find(id);
+        }
+
+        public static Order getOrderBasedOnID(int id)
+        {
+            return db.Orders.Find(id);
+        }
+
         public static List<Raman> getAllRamen()
         {
             return db.Ramen.ToList();
+        }
+
+        public static List<Cart> getCart()
+        {
+            return db.Carts.ToList();
+        }
+
+        public static List<Order> getOrders()
+        {
+            return db.Orders.ToList();
+        }
+
+        public static List<Header> GetHeaders()
+        {
+            return db.Headers.ToList();
+        }
+
+        public static void UpdateRamenStatus(int id)
+        {
+            Order order = getOrderBasedOnID(id);
+            order.RamenStatus = "Handled";
+
+            db.SaveChanges();
         }
     }
 }

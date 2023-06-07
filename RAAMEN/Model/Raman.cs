@@ -17,7 +17,9 @@ namespace RAAMEN.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Raman()
         {
+            this.Carts = new HashSet<Cart>();
             this.Details = new HashSet<Detail>();
+            this.Orders = new HashSet<Order>();
         }
     
         public int Id { get; set; }
@@ -27,7 +29,11 @@ namespace RAAMEN.Model
         public string Price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cart> Carts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail> Details { get; set; }
         public virtual Meat Meat { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }
