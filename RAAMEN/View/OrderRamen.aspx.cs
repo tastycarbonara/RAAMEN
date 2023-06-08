@@ -17,7 +17,27 @@ namespace RAAMEN.View
 
             if (!string.IsNullOrEmpty(Page.MasterPageFile))
             {
-                if (cookie["role"].Equals("1"))
+                if (cookie == null)
+                {
+                    if (Session["role"].Equals("1"))
+                    {
+                        Page.MasterPageFile = "~/View/Master Site/Admin.master";
+                    }
+                    else if (Session["role"].Equals("2"))
+                    {
+                        Page.MasterPageFile = "~/View/Master Site/Staff.master";
+                    }
+                    else if (Session["role"].Equals("3"))
+                    {
+                        Page.MasterPageFile = "~/View/Master Site/Customer.master";
+                    }
+                    else if (Session["role"] == null)
+                    {
+                        Response.Redirect("Login.aspx");
+                    }
+
+                }
+                else if (cookie["role"].Equals("1"))
                 {
                     Page.MasterPageFile = "~/View/Master Site/Admin.master";
                 }
@@ -37,14 +57,22 @@ namespace RAAMEN.View
             HttpCookie cookie = Request.Cookies["ingfo"];
             raamenEntities1 db = new raamenEntities1();
             raamenEntities1 db2 = new raamenEntities1();
-            int counter = 0;
+            int counter1 = 0;
             foreach (var items in db.Carts)
             {
                 DateTime currentDateTime = DateTime.Now;           
                 Header header = new Header();
                 List<Cart> list = RamenRepository.getCart();
 
-                header.CustomerId = int.Parse(cookie["id"]);
+                if(cookie != null){
+                    header.CustomerId = int.Parse(cookie["id"]);
+                }
+                else if(cookie == null)
+                {
+                    header.CustomerId = int.Parse(Session["id"].ToString());
+                }
+
+                
                 header.Staffid = 2;
                 header.Date = currentDateTime;
                 db.Headers.Add(header);
@@ -52,17 +80,18 @@ namespace RAAMEN.View
             }
             db.SaveChanges();
 
-            foreach (var item in db.Headers) {
+            foreach (var item in db.Carts) {
                 List<Header> list2 = RamenRepository.GetHeaders();
                 List<Cart> list = RamenRepository.getCart();
                 Detail detail = new Detail();
-                detail.HeaderId = list2[counter].Id;
-                detail.RamenId = list[counter].RamenId;
-                detail.Quantity = list[counter].Quantity;
+                int last = list2.Count - 1;
+                detail.HeaderId = list2[last].Id;
+                detail.RamenId = list[counter1].RamenId;
+                detail.Quantity = list[counter1].Quantity;
                 db2.Details.Add(detail);
                 
 
-                counter += 1;
+                counter1 += 1;
             }
             db2.SaveChanges();
         }
@@ -77,6 +106,7 @@ namespace RAAMEN.View
             if (RamenRepository.getCart() == null)
             {
                 buy.Enabled = false;
+                clear.Enabled = false;
             }
         }
 

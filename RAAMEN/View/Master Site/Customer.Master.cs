@@ -18,6 +18,12 @@ namespace RAAMEN.View.Master_Site
         {
             HttpCookie cookie = Request.Cookies["ingfo"];
 
+            if (cookie == null)
+            {
+                logout.Enabled = false;
+                Response.Redirect("OrderRamen.aspx");
+            }
+
             cookie.Expires = DateTime.Now.AddDays(-1);
 
             Response.Cookies.Add(cookie);

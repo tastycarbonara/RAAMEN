@@ -17,14 +17,8 @@ namespace RAAMEN.View
 
         protected void regis_Click(object sender, EventArgs e)
         {
-            UserController.insertUser(usernm.Text, email.Text, gender.SelectedValue, 
+            status.Text = UserController.insertUser(usernm.Text, email.Text, gender.SelectedValue, 
                 pass.Text, confpass.Text);
-
-            if(UserController.insertUser(usernm.Text, email.Text, gender.SelectedValue,
-                pass.Text, confpass.Text) == "Please fill the boxes correctly")
-            {
-                status.Text = "Please fill the boxes correctly";
-            }
         }
     }
 }

@@ -22,5 +22,6 @@
 
     <asp:Button ID="insertramen" runat="server" Text="Add New Ramen" OnClick="insertramen_Click" /><br />
 
-    <asp:Button ID="return" runat="server" Text="Return to Manage Ramen" OnClick="return_Click" />
+    <asp:Button ID="return" runat="server" Text="Return to Manage Ramen" OnClick="return_Click" /><br />
+    <asp:Label ID="status" runat="server" Text=""></asp:Label>
 </asp:Content>

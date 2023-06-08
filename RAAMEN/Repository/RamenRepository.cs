@@ -67,6 +67,25 @@ namespace RAAMEN.Repository
         {
             return db.Headers.ToList();
         }
+        public static List<Detail> GetDetail()
+        {
+            return db.Details.ToList();
+        }
+
+        public static Detail getDetailBasedOnID(int id)
+        {
+            return db.Details.Find(id);
+        }
+
+        public static Header getHeaderBasedOnID(int id)
+        {
+            return db.Headers.Find(id);
+        }
+
+        public static Meat getMeatBasedOnID(int id)
+        {
+            return db.Meats.Find(id);
+        }
 
         public static void UpdateRamenStatus(int id)
         {

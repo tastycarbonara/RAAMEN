@@ -26,40 +26,34 @@ namespace RAAMEN.View
 
             if (user == null)
             {
-                status.Text = "Username" + usernm.Text + " doesn't exist";
+                status.Text = "Username " + usernm.Text + " doesn't exist or your password is wrong";
                 return;
             }
 
-            HttpCookie cookie = new HttpCookie("ingfo");
 
-            cookie["id"] = user.Id.ToString();
-            cookie["user"] = user.Username;
-            cookie["role"] = user.RoleId.ToString();
+            HttpCookie cookie = new HttpCookie("ingfo");
+            Session["id"] = user.Id.ToString();
+            Session["user"] = user.Username;
+            Session["role"] = user.RoleId.ToString();
 
             Session["user_pass"] = user.Password;
 
             if (remember.Checked)
             {
+                
+                cookie["id"] = user.Id.ToString();
+                cookie["user"] = user.Username;
+                cookie["role"] = user.RoleId.ToString();
+
                 cookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(cookie);
             }
-            else
-            {
-                Response.Cookies["id"].Expires = DateTime.Now.AddDays(-1);
-                Response.Cookies["user"].Expires = DateTime.Now.AddDays(-1);
-                Response.Cookies["role"].Expires = DateTime.Now.AddDays(-1);
-                Response.Cookies["user_pass"].Expires = DateTime.Now.AddDays(-1);
-            }
-            Response.Cookies.Add(cookie);
 
+            status.Text = "login dengan username " + Session["user"] + " dan kode role " + Session["role"];
 
-            if (cookie["role"].Equals("1") || cookie["role"].Equals("2"))
-            {
-                Response.Redirect("Home.aspx");
-            }
-            else if (cookie["role"].Equals("3"))
-            {
-                Response.Redirect("OrderRamen.aspx");
-            }
+            Response.Redirect("Home.aspx");
+            
+            
         }
 
     }

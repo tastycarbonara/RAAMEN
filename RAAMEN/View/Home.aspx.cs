@@ -16,7 +16,25 @@ namespace RAAMEN.View
             HttpCookie cookie = Request.Cookies["ingfo"];
             if (cookie == null)
             {
-                Response.Redirect("Login.aspx");
+                if(Session["role"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+                else if (Session["role"].Equals("1"))
+                {
+                    welcome.Text = "Welcome, " + Session["user"].ToString();
+                    role.Text = "Your role is Admin";
+                }
+                else if (Session["role"].Equals("2"))
+                {
+                    welcome.Text = "Welcome, " + Session["user"].ToString();
+                    role.Text = "Your role is Staff";
+                }
+                else if (Session["role"].Equals("3"))
+                {
+                    Response.Redirect("OrderRamen.aspx");
+                }
+                
             }
             else if(cookie!=null)
             {
@@ -35,21 +53,38 @@ namespace RAAMEN.View
                 }
             }
 
-
             gv.DataSource = UserRepository.getAllUser();
             gv.DataBind();
 
-            if (cookie["role"].Equals("2"))
+            if(cookie != null)
             {
-                foreach (GridViewRow myrow in gv.Rows)
+                if (cookie["role"].Equals("2"))
                 {
-                    myrow.Visible = false;
-                    if (myrow.Cells[1].Text == "3")
+                    foreach (GridViewRow myrow in gv.Rows)
                     {
-                        myrow.Visible = true;
+                        myrow.Visible = false;
+                        if (myrow.Cells[1].Text == "3")
+                        {
+                            myrow.Visible = true;
+                        }
                     }
                 }
             }
+            else
+            {
+                if (Session["role"].Equals("2"))
+                {
+                    foreach (GridViewRow myrow in gv.Rows)
+                    {
+                        myrow.Visible = false;
+                        if (myrow.Cells[1].Text == "3")
+                        {
+                            myrow.Visible = true;
+                        }
+                    }
+                }
+            }
+            
 
         }
         protected override void OnPreInit(EventArgs e)
@@ -60,7 +95,23 @@ namespace RAAMEN.View
             {
                 if (cookie == null)
                 {
-                    Response.Redirect("Login.aspx");
+                    if (Session == null)
+                    {
+                        Response.Redirect("Login.aspx");
+                    }
+                    else if (Session["role"].Equals("1"))
+                    {
+                        Page.MasterPageFile = "~/View/Master Site/Admin.master";
+                    }
+                    else if (Session["role"].Equals("2"))
+                    {
+                        Page.MasterPageFile = "~/View/Master Site/Staff.master";
+                    }
+                    else if (Session["role"].Equals("3"))
+                    {
+                        Page.MasterPageFile = "~/View/Master Site/Customer.master";
+                    }
+
                 }
                 else if (cookie["role"].Equals("1"))
                 {

@@ -18,7 +18,23 @@ namespace RAAMEN.View
             {
                 if (cookie == null)
                 {
-                    Response.Redirect("Login.aspx");
+                    if (Session["role"].Equals("1"))
+                    {
+                        Page.MasterPageFile = "~/View/Master Site/Admin.master";
+                    }
+                    else if (Session["role"].Equals("2"))
+                    {
+                        Page.MasterPageFile = "~/View/Master Site/Staff.master";
+                    }
+                    else if (Session["role"].Equals("3"))
+                    {
+                        Page.MasterPageFile = "~/View/Master Site/Customer.master";
+                    }
+                    else if (Session["role"] == null)
+                    {
+                        Response.Redirect("Login.aspx");
+                    }
+
                 }
                 else if (cookie["role"].Equals("1"))
                 {
@@ -47,17 +63,36 @@ namespace RAAMEN.View
             con.Close();
 
             HttpCookie cookie = Request.Cookies["ingfo"];
-            if (cookie["role"].Equals("3"))
+            if(cookie!= null)
             {
-                foreach (GridViewRow myrow in transactions.Rows)
+                if (cookie["role"].Equals("3"))
                 {
-                    myrow.Visible = false;
-                    if (myrow.Cells[1].Text == cookie["id"])
+                    foreach (GridViewRow myrow in transactions.Rows)
                     {
-                        myrow.Visible = true;
+                        myrow.Visible = false;
+                        if (myrow.Cells[2].Text == cookie["id"])
+                        {
+                            myrow.Visible = true;
+                        }
                     }
                 }
             }
+
+            if (cookie == null)
+            {
+                if (Session["role"].Equals("3"))
+                {
+                    foreach (GridViewRow myrow in transactions.Rows)
+                    {
+                        myrow.Visible = false;
+                        if (myrow.Cells[2].Text == Session["id"].ToString())
+                        {
+                            myrow.Visible = true;
+                        }
+                    }
+                }
+            }
+            
         }
 
         protected void transactions_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)

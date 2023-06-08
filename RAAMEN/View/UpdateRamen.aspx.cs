@@ -17,7 +17,27 @@ namespace RAAMEN.View
 
             if (!string.IsNullOrEmpty(Page.MasterPageFile))
             {
-                if (cookie["role"].Equals("1"))
+                if (cookie == null)
+                {
+                    if (Session["role"].Equals("1"))
+                    {
+                        Page.MasterPageFile = "~/View/Master Site/Admin.master";
+                    }
+                    else if (Session["role"].Equals("2"))
+                    {
+                        Page.MasterPageFile = "~/View/Master Site/Staff.master";
+                    }
+                    else if (Session["role"].Equals("3"))
+                    {
+                        Page.MasterPageFile = "~/View/Master Site/Customer.master";
+                    }
+                    else if (Session["role"] == null)
+                    {
+                        Response.Redirect("Login.aspx");
+                    }
+
+                }
+                else if (cookie["role"].Equals("1"))
                 {
                     Page.MasterPageFile = "~/View/Master Site/Admin.master";
                 }
@@ -31,7 +51,7 @@ namespace RAAMEN.View
                 }
             }
         }
-       
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -48,7 +68,7 @@ namespace RAAMEN.View
         protected void update_Click(object sender, EventArgs e)
         {
             int id = int.Parse(Request.QueryString["id"]);
-            RamenController.updateRamen(id, int.Parse(meat_inp.SelectedValue), name_inp.Text,  broth_inp.Text, price_inp.Text);
+            status.Text = RamenController.updateRamen(id, int.Parse(meat_inp.SelectedValue), name_inp.Text,  broth_inp.Text, price_inp.Text);
         }
 
         protected void back_Click(object sender, EventArgs e)

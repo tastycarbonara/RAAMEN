@@ -27,4 +27,5 @@
 
     <asp:Button ID="update" runat="server" Text="Update" OnClick="update_Click"/><br />
     <asp:Button ID="back" runat="server" Text="Back to Manage Ramen" OnClick="back_Click"/>
+    <asp:Label ID="status" runat="server" Text=""></asp:Label>
 </asp:Content>

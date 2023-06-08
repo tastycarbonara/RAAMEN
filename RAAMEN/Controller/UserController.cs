@@ -11,10 +11,21 @@ namespace RAAMEN.Controller
     {
         public static string insertUser(string username, string email, string gender, string password, string confpass)
         {
-            if(username.Length>15 && username.Length<5 || email.EndsWith(".com") == false || 
-                gender == null ||  confpass.Equals(password) == false)
+            if(username.Length>15 && username.Length<5)
             {
-                return "Please fill the boxes correctly";
+                return "Username max 15 characters and min 5 characters";
+            }
+            else if (email.EndsWith(".com") == false)
+            {
+                return "Email must end with .com";
+            }
+            else if (gender == null)
+            {
+                return "Please enter your gender";
+            }
+            else if(confpass.Equals(password) == false)
+            {
+                return "Confirm Password doesn't match Password";
             }
             else
             {
@@ -25,10 +36,21 @@ namespace RAAMEN.Controller
 
         public static string updateUser(int id, string username, string email, string gender, string password, string confpass)
         {
-            if (username.Length > 15 && username.Length < 5 || email.EndsWith(".com") == false ||
-                gender == null || confpass.Equals(password) == false)
+            if (username.Length > 15 && username.Length < 5)
             {
-                return "Please fill the boxes correctly";
+                return "Username max 15 characters and min 5 characters";
+            }
+            else if (email.EndsWith(".com") == false)
+            {
+                return "Email must end with .com";
+            }
+            else if (gender == null)
+            {
+                return "Please enter your gender";
+            }
+            else if (confpass.Equals(password) == false)
+            {
+                return "Confirm Password doesn't match Password";
             }
             else
             {

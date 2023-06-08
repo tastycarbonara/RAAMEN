@@ -11,12 +11,7 @@ namespace RAAMEN.View.Master_Site
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            HttpCookie cookie = Request.Cookies["ingfo"];
-            if (cookie == null)
-            {
-                logout.Visible = false;
-                Response.Redirect("Login.aspx");
-            }
+
         }
         protected void home_Click(object sender, EventArgs e)
         {
@@ -26,6 +21,12 @@ namespace RAAMEN.View.Master_Site
         protected void logout_Click(object sender, EventArgs e)
         {
             HttpCookie cookie = Request.Cookies["ingfo"];
+
+            if (cookie == null)
+            {
+                logout.Enabled = false;
+                Response.Redirect("Home.aspx");
+            }
 
             cookie.Expires = DateTime.Now.AddDays(-1);
 

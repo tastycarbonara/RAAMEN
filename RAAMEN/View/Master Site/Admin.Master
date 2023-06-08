@@ -20,6 +20,7 @@
                   
                     <asp:Button ID="queue" runat="server" Text="Order Queue" OnClick="queue_Click" style="margin-left: 10px;"/>
                     <asp:Button ID="history" runat="server" Text="Transaction History" OnClick="history_Click" style="margin-left: 10px;"/>
+                    <asp:Button ID="report" runat="server" Text="View Report" OnClick="report_Click" style="margin-left: 10px;"/>
                 </div>
         </div>
 

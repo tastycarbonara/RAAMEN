@@ -11,18 +11,18 @@ namespace RAAMEN.View.Master_Site
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            HttpCookie cookie = Request.Cookies["ingfo"];
-            if (cookie == null)
-            {
-                logout.Visible = false;
-                Response.Redirect("Login.aspx");
-            }
+
         }
 
         protected void logout_Click(object sender, EventArgs e)
         {
             HttpCookie cookie = Request.Cookies["ingfo"];
 
+            if(cookie == null)
+            {
+                logout.Enabled = false;
+                Response.Redirect("Home.aspx");
+            }
             cookie.Expires = DateTime.Now.AddDays(-1);
 
             Response.Cookies.Add(cookie);
@@ -47,6 +47,11 @@ namespace RAAMEN.View.Master_Site
         protected void history_Click(object sender, EventArgs e)
         {
             Response.Redirect("TransactionHistory.aspx");
+        }
+
+        protected void report_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Report.aspx");
         }
     }
 }

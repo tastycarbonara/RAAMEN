@@ -11,9 +11,21 @@ namespace RAAMEN.Controller
     {
         public static string insertRamen(int MeatId, string name, string broth, string price)
         {
-            if (!name.Contains("Ramen") || MeatId==0 || broth.Equals("") || int.Parse(price)<3000)
+            if (!name.Contains("Ramen"))
             {
-                return "Please fill the boxes correctly";
+                return "Name must end with Ramen";
+            }
+            else if ( MeatId == 0 )
+            {
+                return "Please select a meat";
+            }
+            else if (broth.Equals(""))
+            {
+                return "Please enter the broth";
+            }
+            else if(int.Parse(price) < 3000)
+            {
+                return "Price must be above 3000";
             }
             else
             {
@@ -24,9 +36,21 @@ namespace RAAMEN.Controller
 
         public static string updateRamen(int id, int MeatId, string name, string broth, string price)
         {
-            if (!name.Contains("Ramen") || MeatId == 0 || broth.Equals("") || int.Parse(price) < 3000)
+            if (!name.Contains("Ramen"))
             {
-                return "Please fill the boxes correctly";
+                return "Please enter a name";
+            }
+            else if (MeatId == 0)
+            {
+                return "Please select a meat";
+            }
+            else if (broth.Equals(""))
+            {
+                return "Please enter the broth";
+            }
+            else if (int.Parse(price) < 3000)
+            {
+                return "Price must be above 3000";
             }
             else
             {
