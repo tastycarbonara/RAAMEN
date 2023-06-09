@@ -20,8 +20,7 @@ namespace RAAMEN.View.Master_Site
 
             if (cookie == null)
             {
-                logout.Enabled = false;
-                Response.Redirect("OrderRamen.aspx");
+                Response.Redirect("Login.aspx");
             }
 
             cookie.Expires = DateTime.Now.AddDays(-1);

@@ -72,7 +72,6 @@ namespace RAAMEN.View
                     header.CustomerId = int.Parse(Session["id"].ToString());
                 }
 
-                
                 header.Staffid = 2;
                 header.Date = currentDateTime;
                 db.Headers.Add(header);
@@ -83,8 +82,10 @@ namespace RAAMEN.View
             foreach (var item in db.Carts) {
                 List<Header> list2 = RamenRepository.GetHeaders();
                 List<Cart> list = RamenRepository.getCart();
+                int cartnum = list.Count ;
                 Detail detail = new Detail();
-                int last = list2.Count - 1;
+
+                int last = list2.Count - cartnum + counter1;
                 detail.HeaderId = list2[last].Id;
                 detail.RamenId = list[counter1].RamenId;
                 detail.Quantity = list[counter1].Quantity;

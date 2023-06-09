@@ -24,8 +24,7 @@ namespace RAAMEN.View.Master_Site
 
             if (cookie == null)
             {
-                logout.Enabled = false;
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Login.aspx");
             }
 
             cookie.Expires = DateTime.Now.AddDays(-1);
