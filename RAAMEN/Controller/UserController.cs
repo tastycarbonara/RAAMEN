@@ -1,5 +1,6 @@
 ﻿using RAAMEN.Handler;
 using RAAMEN.Model;
+using RAAMEN.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,8 +35,9 @@ namespace RAAMEN.Controller
             
         }
 
-        public static string updateUser(int id, string username, string email, string gender, string password, string confpass)
+        public static string updateUser(int id, string username, string email, string gender, string password)
         {
+            User user = UserRepository.getUserBasedOnID(id);
             if (username.Length > 15 && username.Length < 5)
             {
                 return "Username max 15 characters and min 5 characters";
@@ -48,9 +50,9 @@ namespace RAAMEN.Controller
             {
                 return "Please enter your gender";
             }
-            else if (confpass.Equals(password) == false)
+            else if (password.Equals(user.Password) == false)
             {
-                return "Confirm Password doesn't match Password";
+                return "Password doesn't match current password";
             }
             else
             {

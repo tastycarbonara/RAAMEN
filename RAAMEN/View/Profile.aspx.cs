@@ -61,7 +61,6 @@ namespace RAAMEN.View
                 showUsername.Text = "Username: " + user.Username;
                 showEmail.Text = "Email: " + user.Email;
                 showGender.Text = "Gender: " + user.Gender;
-                showPassword.Text = "Password: " + user.Password;
             }
             if (cookie == null)
             {
@@ -69,7 +68,6 @@ namespace RAAMEN.View
                 showUsername.Text = "Username: " + user.Username;
                 showEmail.Text = "Email: " + user.Email;
                 showGender.Text = "Gender: " + user.Gender;
-                showPassword.Text = "Password: " + user.Password;
             }
             
 
@@ -82,16 +80,14 @@ namespace RAAMEN.View
             if(cookie!= null)
             {
                 status.Text = UserController.updateUser(int.Parse(cookie["id"]), usernm.Text, email.Text, gender.SelectedValue,
-                pass.Text, confpass.Text);
+                pass.Text);
             }
 
             if(cookie == null)
             {
-                UserController.updateUser(int.Parse(Session["id"].ToString()), usernm.Text, email.Text, gender.SelectedValue,
-                pass.Text, confpass.Text);
+                status.Text = UserController.updateUser(int.Parse(Session["id"].ToString()), usernm.Text, email.Text, gender.SelectedValue,
+                pass.Text);
             }
-
-            status.Text = "Success";
 
         }
     }
